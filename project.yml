@@ -1,0 +1,39 @@
+name: WordHuntLive
+options:
+  createIntermediateGroups: true
+  deploymentTarget:
+    macOS: "14.0"
+packages:
+  WordHuntCore:
+    path: .
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+targets:
+  WordHuntLive:
+    type: application
+    platform: macOS
+    sources:
+      - path: App
+    dependencies:
+      - package: WordHuntCore
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: Word Hunt Live
+        CFBundleName: WordHuntLive
+        CFBundleShortVersionString: "0.1.0"
+        CFBundleVersion: "1"
+        LSMinimumSystemVersion: "$(MACOSX_DEPLOYMENT_TARGET)"
+        LSApplicationCategoryType: public.app-category.utilities
+        NSPrincipalClass: NSApplication
+        NSScreenCaptureUsageDescription: "Word Hunt Live watches the mirrored iPhone window to read the letter grid. Frames never leave this Mac."
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.samb.wordhuntlive
+        PRODUCT_NAME: WordHuntLive
+        ENABLE_HARDENED_RUNTIME: NO
+        CODE_SIGN_STYLE: Automatic
+        COMBINE_HIDPI_IMAGES: YES
+        ENABLE_APP_SANDBOX: NO
